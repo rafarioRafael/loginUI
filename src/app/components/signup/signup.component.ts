@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import ValidateForm from 'src/app/helpers/validateform';
 
 @Component({
   selector: 'app-signup',
@@ -7,14 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SignupComponent implements OnInit {
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
   type: string = "password";
   isText: boolean = false;
   eyeIcon: string = "fa fa-eye-slash"
+  signupForm!: FormGroup
+
+  constructor(private formBuilder: FormBuilder) { }
+
+  ngOnInit(): void {
+    this.signupForm = this.formBuilder.group({
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      username: ['', Validators.required],
+      password: ['', Validators.required]
+    })
+  }
 
   hideShowPass() {
     this.isText = !this.isText;
@@ -22,4 +31,13 @@ export class SignupComponent implements OnInit {
     this.isText ? this.type = "text" : this.type = "password";
   }
 
+  onSignup() {
+    if(this.signupForm.valid){
+      console.log(this.signupForm.value)
+    } else {
+      console.log('form has errors.');
+      ValidateForm.validateAllFormFields(this.signupForm);
+      alert('okdokaodkao');
+    }
+  }
 }
