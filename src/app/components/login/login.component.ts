@@ -41,6 +41,7 @@ export class LoginComponent implements OnInit {
       this.auth.login(this.loginForm.value).subscribe({
         next:(res=>{
           alert(res.message)
+          this.auth.fezLogin();
           this.router.navigate(['dashboard'])
         }),
         error:(err=>{
