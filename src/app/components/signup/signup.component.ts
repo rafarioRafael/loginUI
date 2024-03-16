@@ -14,7 +14,8 @@ export class SignupComponent implements OnInit {
   type: string = "password";
   isText: boolean = false;
   eyeIcon: string = "fa fa-eye-slash"
-  signupForm!: FormGroup
+  signupForm!: FormGroup;
+  loading!: boolean;
 
   constructor(private formBuilder: FormBuilder, private auth: AuthService, private router: Router) { }
 
@@ -36,14 +37,17 @@ export class SignupComponent implements OnInit {
   onSignup() {
     if(this.signupForm.valid){
       console.log(this.signupForm.value)
+      this.loading = true;
       this.auth.signUp(this.signupForm.value).subscribe({
-        next:(res)=>{
-          alert(res.message);
-          this.signupForm.reset();
-          this.router.navigate(['login']);
-        },
-        error:(err)=>{
+        next:(res=>{
+          alert(res.message)
+          this.router.navigate(['login'])
+        }),
+        error:(err=>{
           alert(err?.error.message)
+        }),
+        complete:()=>{
+          this.loading = false;
         }
       })
     } else {

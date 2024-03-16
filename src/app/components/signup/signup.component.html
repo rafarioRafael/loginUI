@@ -38,6 +38,11 @@
                             </div>
                             <small *ngIf= "signupForm.controls['password'].dirty && signupForm.hasError('required', 'password')" class="text-danger">*Password is required</small>
                             <button (click)= "onSignup()" type="submit" class="btn btn-primary btn-block mt-4 w-100">Sign Up</button>
+                            <div *ngIf="loading" class="spinner-overlay">
+                                <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                            </div>
                             <div class="text-center pt-4 text-muted">Already have an account? <a id="forget" routerLink="/login">Login</a></div>
                         </form>
                     </div>
