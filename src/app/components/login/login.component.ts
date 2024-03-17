@@ -41,6 +41,7 @@ export class LoginComponent implements OnInit {
       this.auth.login(this.loginForm.value).subscribe({
         next:(res=>{
           alert(res.message)
+          //this.toast.success({detail:"SUCESS", summary: res.message, duration: 5000});
           this.auth.fezLogin();
           this.router.navigate(['dashboard'])
         }),

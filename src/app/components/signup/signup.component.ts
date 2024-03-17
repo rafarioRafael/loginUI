@@ -36,8 +36,7 @@ export class SignupComponent implements OnInit {
 
   onSignup() {
     if(this.signupForm.valid){
-      console.log(this.signupForm.value)
-      this.loading = true;
+      //this.loading = true;
       this.auth.signUp(this.signupForm.value).subscribe({
         next:(res=>{
           alert(res.message)
@@ -47,7 +46,7 @@ export class SignupComponent implements OnInit {
           alert(err?.error.message)
         }),
         complete:()=>{
-          this.loading = false;
+          //this.loading = false;
         }
       })
     } else {
