@@ -1,19 +1,19 @@
-import { Injectable } from '@angular/core';
-import { CanActivate, Router } from '@angular/router';
-import { AuthService } from './auth.service';
+// import { Injectable } from '@angular/core';
+// import { CanActivate, Router } from '@angular/router';
+// import { AuthService } from './auth.service';
 
-@Injectable({
-    providedIn: 'root'
-})
-export class AuthGuard implements CanActivate {
-    constructor(private authService: AuthService, private router: Router) { }
+// @Injectable({
+//     providedIn: 'root'
+// })
+// export class AuthGuard implements CanActivate {
+//     constructor(private authService: AuthService, private router: Router) { }
 
-    canActivate(): boolean {
-        if (this.authService.isAuthenticatedUser()) {
-            return true;
-        } else {
-            this.router.navigate(['/login'], { queryParams: { returnUrl: this.router.url, errorMessage: 'Você precisa fazer login para acessar esta página.' } });
-            return false;
-        }
-    }
-}
+//     canActivate(): boolean {
+//         if (this.authService.isAuthenticatedUser()) {
+//             return true;
+//         } else {
+//             this.router.navigate(['/login'], { queryParams: { returnUrl: this.router.url, errorMessage: 'Você precisa fazer login para acessar esta página.' } });
+//             return false;
+//         }
+//     }
+// }

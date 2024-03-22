@@ -15,7 +15,7 @@ export class DashboardComponent implements OnInit {
   }
 
   logout(){
-    this.auth.fezLogout()
+    //this.auth.fezLogout()
     this.router.navigate(['login'])
   }
 

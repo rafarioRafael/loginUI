@@ -20,16 +20,16 @@ export class AuthService {
   }
 
   // metodo de verificação de autenticação
-  fezLogin() {
-    // Lógica de autenticação, por exemplo, verificar credenciais, etc.
-    this.isAuthenticated = true;
-  }
+  // fezLogin() {
+  //   // Lógica de autenticação, por exemplo, verificar credenciais, etc.
+  //   this.isAuthenticated = true;
+  // }
 
-  fezLogout() {
-    this.isAuthenticated = false;
-  }
+  // fezLogout() {
+  //   this.isAuthenticated = false;
+  // }
 
-  isAuthenticatedUser(): boolean {
-    return this.isAuthenticated;
-  }
+  // isAuthenticatedUser(): boolean {
+  //   return this.isAuthenticated;
+  // }
 }

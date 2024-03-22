@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+
 import ValidateForm from 'src/app/helpers/validateform';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -17,7 +19,7 @@ export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   loading!: boolean;
 
-  constructor(private formBuilder: FormBuilder, private auth: AuthService, private router: Router) { }
+  constructor(private formBuilder: FormBuilder, private auth: AuthService, private router: Router, private toaster: ToastrService) { }
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
@@ -40,13 +42,14 @@ export class LoginComponent implements OnInit {
       this.loading = true;
       this.auth.login(this.loginForm.value).subscribe({
         next:(res=>{
-          alert(res.message)
-          //this.toast.success({detail:"SUCESS", summary: res.message, duration: 5000});
-          this.auth.fezLogin();
+          //alert(res.message)
+          this.toaster.success('Login accepted, welcome!');
+          //this.auth.fezLogin();
           this.router.navigate(['dashboard'])
         }),
         error:(err=>{
-          alert(err?.error.message)
+          //alert(err?.error.message)
+          this.toaster.error(err?.error.message ,'Something went wrong...');
           this.loading = false;
         })
       })
